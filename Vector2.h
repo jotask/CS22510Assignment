@@ -16,6 +16,7 @@ public:
     int getY(void);
     void setX(int);
     void setY(int);
+    void set(int, int);
 
 private:
     int x;

@@ -5,11 +5,25 @@
 #include <iostream>
 #include "Robot.h"
 
-using namespace std;
-
 Robot::Robot(World *world) {
     this->world = world;
+    this -> position = new Vector2(0, 0);
 }
 Robot::~Robot() {
-    cout << "Robot destroyed" << endl;
+    std::cout << "Robot destroyed" << std::endl;
+}
+
+void Robot::nextMove(double x, double y, int orientation) {
+    this -> position -> set(x, y);
+    this -> orientation = orientation;
+
+}
+
+void Robot::setRanges(std::array<double, Robot::NUMBER_SENSORS> &ranges){
+    this -> sensors = ranges;
+
+}
+
+Vector2 Robot::getPosition() {
+    return *position;
 }

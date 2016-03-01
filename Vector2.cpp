@@ -12,6 +12,10 @@ Vector2::Vector2() {
     this -> init(0, 0);
 }
 
+Vector2::~Vector2() {
+    delete this;
+}
+
 void Vector2::init(int x, int y) {
     this->setX(x);
     this->setY(y);
@@ -31,4 +35,9 @@ void Vector2::setX(int x) {
 
 void Vector2::setY(int y) {
     this -> y = y;
+}
+
+void Vector2::set(int x, int y){
+    this -> setX(x);
+    this -> setY(y);
 }
