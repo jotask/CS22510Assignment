@@ -7,6 +7,7 @@
 
 
 #include <array>
+#include <vector>
 #include "World.h"
 #include "Vector2.h"
 
@@ -17,17 +18,21 @@ public:
 
     static const int NUMBER_SENSORS = 8;
 
-    void nextMove(double x, double y, int orientation);
-    void setRanges(std::array<double, Robot::NUMBER_SENSORS>&);
+    void setRanges(std::vector<double>&);
 
     Vector2 getPosition();
     void setPosition(int, int);
+
+    int getOrientation();
+    void setOrientation(int);
+
+    std::vector<double> readSensors();
 
 private:
     World *world;
     Vector2* position;
     int orientation;
-    std::array<double, Robot::NUMBER_SENSORS> sensors;
+    std::vector<double> sensors;
 
 };
 

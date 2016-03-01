@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <vector>
 #include "World.h"
 #include "Robot.h"
 
@@ -14,13 +15,15 @@ const std::string rangesFilename = "ranges.txt";
 
 using namespace std;
 
-void readPoses(Robot* robot){
+vector< vector<double> > readPoses(){
 
-    std::ifstream infile(path + posesFilename);
+    vector< vector<double> > posesReaded;
+
+    ifstream infile(path + posesFilename);
     if(!infile.is_open()){
         std::cout << "file not found" << std::endl;
         infile.close();
-        return;
+        return posesReaded;
     }
 
     std::string line;
@@ -28,24 +31,31 @@ void readPoses(Robot* robot){
         std::istringstream iss(line);
         double x, y;
         int orientation;
-        if(!(iss >> x >> y >> orientation)){
-            break;
+
+        vector<double> tmp(3);
+
+        for(int i = 0; i < 3; i++){
+            iss >> tmp[i];
         }
-        std::cout << "x: " << x << " y:" << y << " o: " << orientation << std::endl;
-        robot -> nextMove(x, y, orientation);
+
+        posesReaded.push_back(tmp);
     }
 
     infile.close();
 
+    return posesReaded;
+
 }
 
-void readRanges(Robot* robot){
+vector< vector<double> > readRanges() {
+
+    vector< vector<double> > rangesReaded;
 
     std::ifstream infile(path + rangesFilename);
     if(!infile.is_open()){
         std::cout << "file not found" << std::endl;
         infile.close();
-        return;
+        return rangesReaded;
     }
 
     std::string line;
@@ -53,21 +63,45 @@ void readRanges(Robot* robot){
 
         std::istringstream iss (line);
 
-        array<double, Robot::NUMBER_SENSORS> tmp;
+        vector<double> tmp(Robot::NUMBER_SENSORS);
 
         for(int i = 0; i < Robot::NUMBER_SENSORS; i++){
             iss >> tmp[i];
         }
 
-//        robot -> setRanges(tmp);
+        rangesReaded.push_back(tmp);
 
     }
 
     infile.close();
 
+    return rangesReaded;
+
+}
+
+void setRobot(Robot* robot, vector<double> p, vector<double> *r){
+    // FIXME convert to grid coordinates
+    int x, y, orientation;
+    x = p[0];
+    y = p[1];
+    orientation = p[2];
+    robot -> setPosition(x, y);
+    robot -> setOrientation(orientation);
+    robot -> setRanges(*r);
 }
 
 int main() {
+
+    vector< vector<double> > poses;
+    poses = readPoses();
+
+    vector< vector<double> > ranges;
+    ranges = readRanges();
+
+    if(poses.size() != ranges.size()){
+        cout << "something is wrong" << endl;
+        return -1;
+    }
 
     World* world;
     world = new World();
@@ -75,9 +109,15 @@ int main() {
     Robot* robot;
     robot = new Robot(world);
 
-    readRanges(robot);
+    while(!poses.empty() && !ranges.empty()){
 
-    cout << "FINISH!" << endl;
+        world -> printWorld();
+
+        setRobot(robot, poses.front(), &ranges.front());
+        poses.erase(poses.begin());
+        ranges.erase(ranges.begin());
+
+    }
 
     return 0;
 }
