@@ -4,6 +4,11 @@
 
 #include "Sensor.h"
 
+Sensor::Sensor() {
+    this -> orientation = -1;
+    this -> degree = -1;
+}
+
 Sensor::Sensor(int orientation, int degree) {
     this ->  orientation = orientation;
     this -> degree = degree;
@@ -19,4 +24,12 @@ double Sensor::setRead(double readed) {
 
 double Sensor::getRead() {
     return this -> read;
+}
+
+int Sensor::getDegree(){
+    return this -> degree;
+}
+
+int Sensor::getOrientation() {
+    return this -> orientation;
 }

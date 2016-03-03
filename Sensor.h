@@ -8,11 +8,17 @@
 
 class Sensor {
 public:
+    static constexpr double INFINITE = 2.5;
+
+    Sensor();
     Sensor(int, int);
     ~Sensor();
 
     double getRead();
     double setRead(double);
+
+    int getDegree();
+    int getOrientation();
 
 private:
 
