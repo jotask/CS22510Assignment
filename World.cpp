@@ -34,3 +34,30 @@ void World::printWorld() {
         cout << endl;
     }
 }
+
+int World::convertToWorldCoordinates(double x) {
+    int index;
+    index = 0;
+
+    double current;
+    current = 0.0;
+
+//    cout << "before" << endl;
+    while(current < x){
+        current += World::CELL_SIZE;
+        index++;
+//        cout << "------------------------" << x << " ======== " << current << endl;
+    }
+//    cout << "after" << endl;
+
+    return index;
+}
+
+bool World::getValueAt(int x, int y) {
+    return this -> world[x][y];
+}
+
+void World::setValueAt(int x, int y, bool value) {
+//    cout << "X: " << x << " Y: " << y << " V: " << value << endl;
+    this -> world[x][y] = &value;
+}
