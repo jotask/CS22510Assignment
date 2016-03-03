@@ -10,6 +10,7 @@
 #include <vector>
 #include "World.h"
 #include "Vector2.h"
+#include "Sensor.h"
 
 class Robot {
 public:
@@ -18,21 +19,26 @@ public:
 
     static const int NUMBER_SENSORS = 8;
 
-    void setRanges(std::vector<double>&);
-
     Vector2 getPosition();
     void setPosition(int, int);
 
     int getOrientation();
     void setOrientation(int);
 
-    std::vector<double> readSensors();
+    World* getWorld();
+
+    void update();
+
+     std::vector<Sensor> getSensors();
 
 private:
     World *world;
     Vector2* position;
     int orientation;
-    std::vector<double> sensors;
+
+    std::vector<Sensor> sensors;
+
+    double convertDegreeToRadian(double);
 
 };
 
