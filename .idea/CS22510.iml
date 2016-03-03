@@ -2,12 +2,14 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Sensor.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Vector2.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Robot.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Robot.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sensor.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/World.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/World.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Robot.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Vector2.h" isTestSource="false" />
     </content>
