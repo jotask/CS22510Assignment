@@ -29,11 +29,8 @@ vector< vector<double> > readPoses(){
     std::string line;
     while(std::getline(infile, line)){
         std::istringstream iss(line);
-        double x, y;
-        int orientation;
 
         vector<double> tmp(3);
-
         for(int i = 0; i < 3; i++){
             iss >> tmp[i];
         }
@@ -82,26 +79,46 @@ vector< vector<double> > readRanges() {
 void setRobot(Robot* robot, vector<double> p, vector<double> *r){
     // FIXME convert to grid coordinates
     int x, y, orientation;
-    x = p[0];
-    y = p[1];
-    orientation = p[2];
+
+    World* world;
+    world = robot -> getWorld();
+
+    x = world -> convertToWorldCoordinates(p[0]);
+    y = world -> convertToWorldCoordinates(p[1]);
+
+//    cout << "x:" << p[0] << " y:" << p[1] << endl;
+//    cout << "x:" << x << " y:" << y << endl << endl;
+
+    orientation = (int)p[2];
     robot -> setPosition(x, y);
     robot -> setOrientation(orientation);
-    robot -> setRanges(*r);
+
+    // Set the values for all the sensors for the robot, for simulation
+    Sensor* sensors;
+    robot -> getSensors();
+    for(int i = 0; i < Robot::NUMBER_SENSORS; i++){
+        double tmp;
+        tmp = r -> at(i);
+        sensors -> setRead(tmp);
+    }
+}
+
+void information(World* world, double test){
+    cout << "O: " << test << " C: " << world -> convertToWorldCoordinates(test) << endl;
 }
 
 int main() {
 
-    vector< vector<double> > poses;
-    poses = readPoses();
-
-    vector< vector<double> > ranges;
-    ranges = readRanges();
-
-    if(poses.size() != ranges.size()){
-        cout << "something is wrong" << endl;
-        return -1;
-    }
+//    vector< vector<double> > poses;
+//    poses = readPoses();
+//
+//    vector< vector<double> > ranges;
+//    ranges = readRanges();
+//
+//    if(poses.size() != ranges.size()){
+//        cout << "something is wrong" << endl;
+//        return -1;
+//    }
 
     World* world;
     world = new World();
@@ -109,15 +126,26 @@ int main() {
     Robot* robot;
     robot = new Robot(world);
 
-    while(!poses.empty() && !ranges.empty()){
+//    while(!poses.empty() && !ranges.empty()){
+//
+////        world -> printWorld();
+//
+//        setRobot(robot, poses.front(), &ranges.front());
+//        poses.erase(poses.begin());
+//        ranges.erase(ranges.begin());
+//
+//        robot -> update();
+//
+//    }
 
-        world -> printWorld();
-
-        setRobot(robot, poses.front(), &ranges.front());
-        poses.erase(poses.begin());
-        ranges.erase(ranges.begin());
-
+    for(int i = 0; i < World::WORLD_WIDTH; i++){
+        for(int j = 0; j < World::WORLD_HEIGHT; j++){
+            world -> setValueAt(i, j, true);
+        }
     }
 
+    world -> printWorld();
+
     return 0;
+
 }
