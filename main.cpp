@@ -20,7 +20,7 @@ int main() {
 
     Simulation simulation (robot, posesFilename, rangesFilename);
 
-    if(simulation.hasToSimulate()){
+    if(!simulation.hasToSimulate()){
         cout << "Error reading the files for the simulation" << endl;
         return 1;
     }
