@@ -1,7 +1,3 @@
-//
-// Created by Jose Vives on 29/02/2016.
-//
-
 #include <iostream>
 #include "World.h"
 #include "Robot.h"
@@ -26,10 +22,8 @@ int main() {
     }
 
     while(!simulation.isFinishedSimulation()){
-        cout << "simulation in process" << endl;
+        simulation.simulateStep();
     }
-
-    cout << "Simulation finished" << endl;
 
     return 0;
 
