@@ -1,9 +1,7 @@
-//
-// Created by Jose Vives on 29/02/2016.
-//
-
 #ifndef CS22510_WORLD_H
 #define CS22510_WORLD_H
+
+#include "Resources.h"
 
 class World {
 
@@ -19,11 +17,11 @@ public:
     int convertToWorldCoordinates(double x);
 
     bool getValueAt(int, int);
-    void setValueAt(int, int, bool);
+    void setValueAt(int, int, Resources::Cell);
 
 private:
 
-    bool world [WORLD_WIDTH][WORLD_HEIGHT];
+    Resources::Cell world [WORLD_WIDTH][WORLD_HEIGHT];
 
 };
 
