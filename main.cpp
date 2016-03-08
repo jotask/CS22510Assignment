@@ -22,7 +22,9 @@ int main() {
     }
 
     while(!simulation.isFinishedSimulation()){
+
         simulation.simulateStep();
+
     }
 
     return 0;
