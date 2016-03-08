@@ -14,12 +14,12 @@
 
 class Robot {
 public:
-    Robot(World * world);
+    Robot(World & world);
     ~Robot();
 
     static const int NUMBER_SENSORS = 8;
 
-    Vector2 getPosition();
+    Vector2* getPosition();
     void setPosition(int, int);
 
     int getOrientation();
@@ -29,7 +29,7 @@ public:
 
     void update();
 
-     std::vector<Sensor> getSensors();
+     std::vector<Sensor>& getSensors();
 
 private:
     World *world;
