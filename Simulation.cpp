@@ -1,7 +1,6 @@
 #include <iostream>
 #include <math.h>
 #include "Simulation.h"
-#include "Util.h"
 
 using namespace std;
 
@@ -27,7 +26,7 @@ void Simulation::simulateStep() {
 
     this -> updateInformation();
     this -> step();
-    this -> render();
+//    this -> render();
 
 }
 
@@ -89,8 +88,6 @@ void Simulation::step() {
         oY = Util::realToVirtual(obstacleY);
 
         world->setValueAt(oX, oY, Util::Cell::OBSTACLE);
-
-        cout << endl;
 
     }
 
@@ -168,3 +165,11 @@ void Simulation::readPoses(const char* posesFile){
 
 }
 
+
+World* Simulation::getWorld() {
+    return world;
+}
+
+Robot* Simulation::getRobot() {
+    return robot;
+}

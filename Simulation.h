@@ -22,9 +22,16 @@ public:
 
     bool hasToSimulate();
 
+    World* getWorld();
+    Robot* getRobot();
+
     void simulateStep();
 
     bool isFinishedSimulation();
+
+    void updateInformation();
+    void step();
+    void render();
 
 private:
 
@@ -36,10 +43,6 @@ private:
 
     void readPoses(const char*);
     void readRanges(const char*);
-
-    void updateInformation();
-    void step();
-    void render();
 
 };
 

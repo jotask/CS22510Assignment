@@ -42,7 +42,7 @@ void World::printWorld() {
     cout << endl << endl;
 }
 
-bool World::getValueAt(int x, int y) {
+Util::Cell World::getValueAt(int x, int y) {
     return this -> world[x][y];
 }
 

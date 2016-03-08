@@ -15,7 +15,7 @@ public:
 
     void printWorld(void);
 
-    bool getValueAt(int, int);
+    Util::Cell getValueAt(int, int);
     void setValueAt(int, int, Util::Cell);
 
 private:

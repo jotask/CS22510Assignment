@@ -13,7 +13,11 @@ public:
 
     struct pose{ int x, y, o; };
 
-    enum Cell { EMPTY, OBSTACLE, ROBOT };
+    enum Cell {
+        EMPTY,
+        OBSTACLE,
+        ROBOT
+    };
 
     static double degreeToRadian(int degree){
         return degree * (PI / 180);

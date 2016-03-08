@@ -1,7 +1,9 @@
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include "World.h"
 #include "Robot.h"
 #include "Simulation.h"
+#include "Display.h"
 
 using namespace std;
 
@@ -21,11 +23,10 @@ int main() {
         return 1;
     }
 
-    while(!simulation.isFinishedSimulation()){
+    Display display (600, 600, "Simulation!", 30, simulation);
+    display.setInterval();
 
-        simulation.simulateStep();
-
-    }
+    display.loop();
 
     return 0;
 
