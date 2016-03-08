@@ -1,7 +1,3 @@
-//
-// Created by jota on 05/03/16.
-//
-
 #ifndef CS22510_SIMULATION_H
 #define CS22510_SIMULATION_H
 
@@ -9,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <SFML/System/Time.hpp>
 #include "World.h"
 #include "Robot.h"
 
@@ -38,7 +35,10 @@ private:
     World* world;
     Robot* robot;
 
-    vector< vector<double> > posesReaded;
+    const float WAIT = 0.5;
+    clock_t nextTime;
+
+    vector< Util::Pose > posesReaded;
     vector< vector<double> > rangesReaded;
 
     void readPoses(const char*);

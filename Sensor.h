@@ -15,7 +15,7 @@ public:
     ~Sensor();
 
     double getRead();
-    double setRead(double);
+    void setRead(double);
 
     int getDegree();
     int getOrientation();

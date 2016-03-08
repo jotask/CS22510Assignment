@@ -18,7 +18,7 @@ Sensor::~Sensor() {
 
 }
 
-double Sensor::setRead(double readed) {
+void Sensor::setRead(double readed) {
     this -> read = readed;
 }
 

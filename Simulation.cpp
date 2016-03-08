@@ -14,6 +14,8 @@ Simulation::Simulation(Robot& robot, const char* posesFile, const char* rangesFi
     this -> readPoses(posesFile);
     this -> readRanges(rangesFile);
 
+    this -> nextTime = clock() + (WAIT * CLOCKS_PER_SEC);
+
 }
 
 Simulation::~Simulation() { }
@@ -23,27 +25,33 @@ bool Simulation::hasToSimulate() {
 }
 
 void Simulation::simulateStep() {
-
-    this -> updateInformation();
-    this -> step();
-//    this -> render();
-
+    if(clock() >= nextTime){
+        nextTime = clock() + (WAIT * CLOCKS_PER_SEC);
+        this->updateInformation();
+        this->step();
+        //    this -> render();
+    }
 }
 
 void Simulation::updateInformation() {
 
     // TODO Use QUEUE rather than vector
 
-    vector<double> &pose = posesReaded.front();
+    Util::Pose &pose = posesReaded.front();
     vector<double> &ranges = rangesReaded.front();
 
+    // Remove robot from old map position
+    this-> world->setValueAt(robot->getPosition()->getX(), robot->getPosition()->getY(), Util::EMPTY);
+
     // Update robot position and orientation
-    int x, y, o;
-    x = Util::realToVirtual(pose[0]);
-    y = Util::realToVirtual(pose[1]);
-    o = pose[2];
+    int x, y;
+    x = Util::realToVirtual(pose.x);
+    y = Util::realToVirtual(pose.y);
     robot -> setPosition(x, y);
-    robot -> setOrientation(o);
+    robot -> setOrientation(pose.o);
+
+    // Let know to the map where is the robot now
+    this-> world->setValueAt(robot->getPosition()->getX(), robot->getPosition()->getY(), Util::ROBOT);
 
     // Get all sensors from the robot
     vector<Sensor>& sensors = robot -> getSensors();
@@ -95,13 +103,6 @@ void Simulation::step() {
 
 void Simulation::render() {
 
-//    int x, y;
-//
-//    x = this -> robot->getPosition()->getX();
-//    y = this -> robot->getPosition()->getY();
-//
-//    world -> setValueAt(x, y, Resources::Cell::ROBOT);
-
     world -> printWorld();
 
 }
@@ -151,12 +152,18 @@ void Simulation::readPoses(const char* posesFile){
     while(std::getline(infile, line)){
         std::istringstream iss(line);
 
-        vector<double> tmp(3);
-        for(int i = 0; i < 3; i++){
-            iss >> tmp[i];
-        }
+//        vector<double> tmp(3);
+//        for(int i = 0; i < 3; i++){
+//            iss >> tmp[i];
+//
+//        }
 
-        posesReaded.push_back(tmp);
+        Util::Pose pose;
+        iss >> pose.x;
+        iss >> pose.y;
+        iss >> pose.o;
+
+        posesReaded.push_back(pose);
     }
 
     infile.close();

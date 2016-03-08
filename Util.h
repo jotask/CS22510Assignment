@@ -11,7 +11,10 @@ class Util {
 
 public:
 
-    struct pose{ int x, y, o; };
+    struct Pose{
+        double x, y;
+        int o;
+    };
 
     enum Cell {
         EMPTY,
@@ -25,14 +28,14 @@ public:
 
     static double virtualToReal(const int a) {
         double tmp;
-        tmp = ( ( a * ((double) 0.2 * 50 ) ) / (50) );
+        tmp = ( ( a * (0.2 * 50 ) ) / (50) );
         return tmp;
     }
 
-    static double realToVirtual(const double a){
-        double tmp;
-        tmp = ( (50 * a) / ((double)0.2 * 50 ) );
-        return (int) tmp;
+    static int realToVirtual(const double a){
+        int tmp;
+        tmp = ( (50 * a) / (0.2 * 50 ) );
+        return tmp;
     }
 
 private:
