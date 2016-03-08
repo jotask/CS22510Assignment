@@ -14,6 +14,18 @@ public:
         return degree * (PI / 180);
     }
 
+    static double virtualToReal(int a){
+        double tmp;
+        tmp = ( ( a * World::CELL_SIZE * World::WORLD_WIDTH ) / (World::WORLD_WIDTH) );
+        return tmp;
+    }
+
+    static double realToVirtual(double a){
+        double tmp;
+        tmp = ( (World::WORLD_WIDTH * a) / (World::CELL_SIZE * World::WORLD_WIDTH ) );
+        return (int) tmp;
+    }
+
 private:
 
     // TODO more accurate value
