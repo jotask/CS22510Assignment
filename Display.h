@@ -16,7 +16,7 @@ public:
 
 private:
 
-    static const bool isDebug = false;
+    static bool isDebug;
 
     sf::RenderWindow* window;
     Simulation* simulation;

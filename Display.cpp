@@ -2,6 +2,8 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include "Display.h"
 
+bool Display::isDebug = false;
+
 Display::Display(unsigned int width, unsigned int height, const char* title, unsigned int fps, Simulation& sim) {
 
     this -> simulation = &sim;
