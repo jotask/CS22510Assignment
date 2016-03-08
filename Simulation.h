@@ -17,10 +17,12 @@ using namespace std;
 class Simulation {
 
 public:
-    Simulation(World*, Robot*, const char*, const char*);
+    Simulation(Robot&, const char*, const char*);
     ~Simulation();
 
-    void simulate();
+    bool hasToSimulate();
+
+    void simulateStep();
 
     bool isFinishedSimulation();
 
@@ -35,9 +37,9 @@ private:
     void readPoses(const char*);
     void readRanges(const char*);
 
-    void updateInformation(Robot*, vector<double>*, vector<double>*);
-
-    bool isFinished;
+    void updateInformation();
+    void step();
+    void render();
 
 };
 

@@ -1,83 +1,119 @@
-//
-// Created by jota on 05/03/16.
-//
-
 #include <iostream>
+#include <math.h>
 #include "Simulation.h"
+#include "Util.h"
 
 using namespace std;
 
-Simulation::Simulation(World* world, Robot* robot, const char* posesFile, const char* rangesFile) {
-    this -> world = world;
-    this -> robot = robot;
-    this -> isFinished = false;
+Simulation::Simulation(Robot& robot, const char* posesFile, const char* rangesFile) {
 
+    // Set variables for this instance
+    this -> world = robot.getWorld();
+    this -> robot = &robot;
+
+    // Read the files for set up the simulation
     this -> readPoses(posesFile);
     this -> readRanges(rangesFile);
 
-    if(this -> posesReaded.empty()) {
-        cout << "ERROR 1" << endl;
-    }
-    if(this -> rangesReaded.empty()){
-        cout << "ERROR 2" << endl;
-    }
+}
+
+Simulation::~Simulation() { }
+
+bool Simulation::hasToSimulate() {
+    return (!posesReaded.empty() && !rangesReaded.empty() && posesReaded.size() == rangesReaded.size());
+}
+
+void Simulation::simulateStep() {
+
+    this -> updateInformation();
+    this -> step();
+    this -> render();
 
 }
 
-Simulation::~Simulation() {
-    cout << "Simulation deleted" << endl;
-}
+void Simulation::updateInformation() {
 
-void Simulation::simulate() {
-    cout << "Updating Simulation" << endl;
-    while(!posesReaded.empty() && !rangesReaded.empty()){
+    // TODO Use QUEUE rather than vector
 
-        world -> printWorld();
+    vector<double> &pose = posesReaded.front();
+    vector<double> &ranges = rangesReaded.front();
 
-        this -> updateInformation(robot, &posesReaded.front(), &rangesReaded.front());
-
-        posesReaded.erase(posesReaded.begin());
-        rangesReaded.erase(rangesReaded.begin());
-
-        robot -> update();
-
-    }
-}
-
-void Simulation::updateInformation(Robot* robot, vector<double>* p, vector<double>* r) {
-    // FIXME convert to grid coordinates
-    int x, y, orientation;
-
-    World* world;
-    world = robot -> getWorld();
-
-    x = world -> convertToWorldCoordinates(p[0]);
-    y = world -> convertToWorldCoordinates(p[1]);
-
-//    cout << "x:" << p[0] << " y:" << p[1] << endl;
-//    cout << "x:" << x << " y:" << y << endl << endl;
-
-    orientation = (int)&p[2];
+    // Update robot position and orientation
+    int x, y, o;
+    x = Util::realToVirtual(pose[0]);
+    y = Util::realToVirtual(pose[1]);
+    o = pose[2];
     robot -> setPosition(x, y);
-    robot -> setOrientation(orientation);
+    robot -> setOrientation(o);
 
-    // Set the values for all the sensors for the robot, for simulation
-    Sensor* sensors;
-    robot -> getSensors();
-    for(int i = 0; i < Robot::NUMBER_SENSORS; i++){
-        double tmp;
-        tmp = r -> at(i);
-        sensors -> setRead(tmp);
+    // Get all sensors from the robot
+    vector<Sensor>& sensors = robot -> getSensors();
+
+    // Update robot sensors reading values
+    for(int i = 0; i < sensors . size(); i++){
+        sensors . at(i) . setRead(ranges[i]);
     }
+
+    posesReaded.erase(posesReaded.begin());
+    rangesReaded.erase(rangesReaded.begin());
+
+}
+
+void Simulation::step() {
+
+    vector<Sensor>& sensors = robot -> getSensors();
+
+    for(int i = 0; i < sensors.size(); i++){
+        Sensor& s = sensors.at(i);
+
+        double valueRead = s.getRead();
+
+        if(valueRead == Sensor::INFINITE) {
+            continue;
+        }
+
+        double orientationRadian;
+        orientationRadian = Util::degreeToRadian(robot->getOrientation() + s.getDegree());
+
+        double xr, xy;
+        xr = Util::virtualToReal(robot->getPosition()->getX());
+        xy = Util::virtualToReal(robot->getPosition()->getY());
+
+        double obstacleX, obstacleY;
+
+        obstacleX = (xr + (valueRead * cos(orientationRadian)));
+        obstacleY = (xy + (valueRead * sin(orientationRadian)));
+
+        int oX, oY;
+        oX = Util::realToVirtual(obstacleX);
+        oY = Util::realToVirtual(obstacleY);
+
+        world->setValueAt(oX, oY, Util::Cell::OBSTACLE);
+
+        cout << endl;
+
+    }
+
+}
+
+void Simulation::render() {
+
+//    int x, y;
+//
+//    x = this -> robot->getPosition()->getX();
+//    y = this -> robot->getPosition()->getY();
+//
+//    world -> setValueAt(x, y, Resources::Cell::ROBOT);
+
+    world -> printWorld();
+
 }
 
 bool Simulation::isFinishedSimulation() {
-    return this ->isFinished;
+    return ((this -> posesReaded.empty()) && (this -> rangesReaded.empty()));
 }
 
 void Simulation::readRanges(const char* file) {
-
-    vector< vector<double>* >* rangesReaded;
 
     std::ifstream infile(file);
     if(!infile.is_open()){
@@ -97,7 +133,7 @@ void Simulation::readRanges(const char* file) {
             iss >> tmp[i];
         }
 
-        rangesReaded -> push_back(&tmp);
+        rangesReaded.push_back(tmp);
 
     }
 
@@ -106,8 +142,6 @@ void Simulation::readRanges(const char* file) {
 }
 
 void Simulation::readPoses(const char* posesFile){
-
-    vector< vector<double> > posesReaded;
 
     ifstream infile(posesFile);
     if(!infile.is_open()){

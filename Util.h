@@ -5,24 +5,29 @@
 #ifndef CS22510_UTIL_H
 #define CS22510_UTIL_H
 
+#include "World.h"
 
 class Util {
 
 public:
 
+    struct pose{ int x, y, o; };
+
+    enum Cell { EMPTY, OBSTACLE, ROBOT };
+
     static double degreeToRadian(int degree){
         return degree * (PI / 180);
     }
 
-    static double virtualToReal(int a){
+    static double virtualToReal(const int a) {
         double tmp;
-        tmp = ( ( a * World::CELL_SIZE * World::WORLD_WIDTH ) / (World::WORLD_WIDTH) );
+        tmp = ( ( a * ((double) 0.2 * 50 ) ) / (50) );
         return tmp;
     }
 
-    static double realToVirtual(double a){
+    static double realToVirtual(const double a){
         double tmp;
-        tmp = ( (World::WORLD_WIDTH * a) / (World::CELL_SIZE * World::WORLD_WIDTH ) );
+        tmp = ( (50 * a) / ((double)0.2 * 50 ) );
         return (int) tmp;
     }
 

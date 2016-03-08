@@ -1,7 +1,7 @@
 #ifndef CS22510_WORLD_H
 #define CS22510_WORLD_H
 
-#include "Resources.h"
+#include "Util.h"
 
 class World {
 
@@ -14,14 +14,13 @@ public:
     static constexpr double CELL_SIZE = 0.2;
 
     void printWorld(void);
-    int convertToWorldCoordinates(double x);
 
     bool getValueAt(int, int);
-    void setValueAt(int, int, Resources::Cell);
+    void setValueAt(int, int, Util::Cell);
 
 private:
 
-    Resources::Cell world [WORLD_WIDTH][WORLD_HEIGHT];
+    Util::Cell world [WORLD_WIDTH][WORLD_HEIGHT];
 
 };
 
