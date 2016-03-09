@@ -53,6 +53,7 @@ void Display::update() {
 }
 
 void Display::render() {
+
     window -> clear(sf::Color::Black);
 
     const sf::Vector2u& sizeWindow = window->getSize();

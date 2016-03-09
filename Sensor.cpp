@@ -2,6 +2,7 @@
 // Created by Jota on 02/03/2016.
 //
 
+#include <iostream>
 #include "Sensor.h"
 
 Sensor::Sensor() {
@@ -15,7 +16,7 @@ Sensor::Sensor(int orientation, int degree) {
 }
 
 Sensor::~Sensor() {
-
+    std::cout << "~Sensor()" << std::endl;
 }
 
 void Sensor::setRead(double readed) {

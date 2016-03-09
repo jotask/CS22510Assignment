@@ -29,16 +29,14 @@ public:
 
     void update();
 
-     std::vector<Sensor>& getSensors();
+     std::vector<Sensor*>& getSensors();
 
 private:
     World *world;
-    Vector2* position;
+    Vector2 position;
     int orientation;
 
-    std::vector<Sensor> sensors;
-
-    double convertDegreeToRadian(double);
+    std::vector<Sensor*> sensors;
 
 };
 

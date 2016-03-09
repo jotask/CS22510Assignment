@@ -18,7 +18,8 @@ Simulation::Simulation(Robot& robot, const char* posesFile, const char* rangesFi
 
 }
 
-Simulation::~Simulation() { }
+Simulation::~Simulation() {
+}
 
 bool Simulation::hasToSimulate() {
     return (!posesReaded.empty() && !rangesReaded.empty() && posesReaded.size() == rangesReaded.size());
@@ -54,11 +55,11 @@ void Simulation::updateInformation() {
     this-> world->setValueAt(robot->getPosition()->getX(), robot->getPosition()->getY(), Util::ROBOT);
 
     // Get all sensors from the robot
-    vector<Sensor>& sensors = robot -> getSensors();
+    vector<Sensor*>& sensors = robot -> getSensors();
 
     // Update robot sensors reading values
-    for(int i = 0; i < sensors . size(); i++){
-        sensors . at(i) . setRead(ranges[i]);
+    for(unsigned int i = 0; i < sensors . size(); i++){
+        sensors . at(i) -> setRead(ranges[i]);
     }
 
     posesReaded.erase(posesReaded.begin());
@@ -68,19 +69,19 @@ void Simulation::updateInformation() {
 
 void Simulation::step() {
 
-    vector<Sensor>& sensors = robot -> getSensors();
+    vector<Sensor*>& sensors = robot -> getSensors();
 
-    for(int i = 0; i < sensors.size(); i++){
-        Sensor& s = sensors.at(i);
+    for(unsigned int i = 0; i < sensors.size(); i++){
+        Sensor* s = sensors.at(i);
 
-        double valueRead = s.getRead();
+        double valueRead = s -> getRead();
 
         if(valueRead == Sensor::INFINITE) {
             continue;
         }
 
         double orientationRadian;
-        orientationRadian = Util::degreeToRadian(robot->getOrientation() + s.getDegree());
+        orientationRadian = Util::degreeToRadian(robot->getOrientation() + s->getDegree());
 
         double xr, xy;
         xr = Util::virtualToReal(robot->getPosition()->getX());

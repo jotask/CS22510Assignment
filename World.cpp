@@ -15,7 +15,8 @@ World::World() {
 
 }
 
-World::~World() { }
+World::~World() {
+}
 
 void World::printWorld() {
     // Print the world
