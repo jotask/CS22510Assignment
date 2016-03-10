@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Robot::Robot(World& world) {
+Robot::Robot(World& world, const configuration& config) {
     this-> world = &world;
     this -> position.set(0,0);
     this -> orientation = 0;

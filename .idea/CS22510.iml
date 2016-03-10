@@ -6,8 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/Robot.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sensor.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Robot.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Config.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sensor.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Vector2.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Config.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/World.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Display.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Simulation.h" isTestSource="false" />

@@ -1,18 +1,21 @@
 #include <iostream>
 #include <math.h>
 #include "Simulation.h"
+#include "Config.h"
 
 using namespace std;
 
-Simulation::Simulation(Robot& robot, const char* posesFile, const char* rangesFile) {
+Simulation::Simulation(Robot& robot, const configuration& config) {
+
+    this -> WAIT = config.delay;
 
     // Set variables for this instance
     this -> world = robot.getWorld();
     this -> robot = &robot;
 
     // Read the files for set up the simulation
-    this -> readPoses(posesFile);
-    this -> readRanges(rangesFile);
+    this -> readPoses(config.posesFile);
+    this -> readRanges(config.rangesFile);
 
     this -> nextTime = clock() + (WAIT * CLOCKS_PER_SEC);
 
@@ -25,13 +28,15 @@ bool Simulation::hasToSimulate() {
     return (!posesReaded.empty() && !rangesReaded.empty() && posesReaded.size() == rangesReaded.size());
 }
 
-void Simulation::simulateStep() {
+bool Simulation::simulateStep() {
     if(clock() >= nextTime){
         nextTime = clock() + (WAIT * CLOCKS_PER_SEC);
         this->updateInformation();
         this->step();
+        return true;
         //    this -> render();
     }
+    return false;
 }
 
 void Simulation::updateInformation() {
@@ -112,7 +117,7 @@ bool Simulation::isFinishedSimulation() {
     return ((this -> posesReaded.empty()) && (this -> rangesReaded.empty()));
 }
 
-void Simulation::readRanges(const char* file) {
+void Simulation::readRanges(const std::string file) {
 
     std::ifstream infile(file);
     if(!infile.is_open()){
@@ -140,7 +145,7 @@ void Simulation::readRanges(const char* file) {
 
 }
 
-void Simulation::readPoses(const char* posesFile){
+void Simulation::readPoses(const std::string posesFile){
 
     ifstream infile(posesFile);
     if(!infile.is_open()){
@@ -153,12 +158,6 @@ void Simulation::readPoses(const char* posesFile){
     while(std::getline(infile, line)){
         std::istringstream iss(line);
 
-//        vector<double> tmp(3);
-//        for(int i = 0; i < 3; i++){
-//            iss >> tmp[i];
-//
-//        }
-
         Util::Pose pose;
         iss >> pose.x;
         iss >> pose.y;
@@ -168,8 +167,6 @@ void Simulation::readPoses(const char* posesFile){
     }
 
     infile.close();
-
-    return;
 
 }
 

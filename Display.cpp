@@ -2,14 +2,18 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include "Display.h"
 
-bool Display::isDebug = false;
+Display::Display(const configuration& config, Simulation& sim) {
 
-Display::Display(unsigned int width, unsigned int height, const char* title, unsigned int fps, Simulation& sim) {
+    this -> isDebug = config.debug;
+    this -> saveScreenToImage = config.saveScreenShoots;
 
     this -> simulation = &sim;
 
-    this -> window = new sf::RenderWindow(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-    this -> window -> setFramerateLimit(fps);
+    this -> window = new sf::RenderWindow(sf::VideoMode(config.displayWidth, config.displayHeight),
+                                          config.displayTitle, sf::Style::Close | sf::Style::Titlebar);
+    this -> window -> setFramerateLimit(config.displayFps);
+
+    this -> screenshot_num = 0;
 
 }
 
@@ -48,7 +52,12 @@ void Display::update() {
         return;
     }
 
-    simulation -> simulateStep();
+    if(simulation -> simulateStep() && saveScreenToImage){
+        sf::Image image = window -> capture();
+        std::stringstream filename;
+        filename << "data/screenshot_" << screenshot_num++ << ".png";
+        image.saveToFile(filename.str());
+    }
 
 }
 
@@ -92,8 +101,4 @@ void Display::render() {
     }
 
     window -> display();
-}
-
-void Display::setInterval() {
-
 }

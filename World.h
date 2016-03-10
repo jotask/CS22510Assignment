@@ -2,11 +2,12 @@
 #define CS22510_WORLD_H
 
 #include "Util.h"
+#include "Config.h"
 
 class World {
 
 public:
-    World();
+    World(const configuration&);
     ~World();
 
     static const int WORLD_WIDTH = 50;

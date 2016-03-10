@@ -4,7 +4,7 @@
 
 using namespace std;
 
-World::World() {
+World::World(const configuration& config) {
 
     // Initialize the world with an empty grid
     for(int x = 0; x < World::WORLD_WIDTH; x++){

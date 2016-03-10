@@ -8,13 +8,14 @@
 #include <SFML/System/Time.hpp>
 #include "World.h"
 #include "Robot.h"
+#include "Config.h"
 
 using namespace std;
 
 class Simulation {
 
 public:
-    Simulation(Robot&, const char*, const char*);
+    Simulation(Robot&, const configuration&);
     ~Simulation();
 
     bool hasToSimulate();
@@ -22,7 +23,7 @@ public:
     World* getWorld();
     Robot* getRobot();
 
-    void simulateStep();
+    bool simulateStep();
 
     bool isFinishedSimulation();
 
@@ -35,14 +36,14 @@ private:
     World* world;
     Robot* robot;
 
-    const float WAIT = 0.5;
+    float WAIT;
     clock_t nextTime;
 
     vector< Util::Pose > posesReaded;
     vector< vector<double> > rangesReaded;
 
-    void readPoses(const char*);
-    void readRanges(const char*);
+    void readPoses(const std::string );
+    void readRanges(const std::string );
 
 };
 

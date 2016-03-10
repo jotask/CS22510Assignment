@@ -4,27 +4,29 @@
 #include "Robot.h"
 #include "Simulation.h"
 #include "Display.h"
+#include "Config.h"
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
 
-    const char posesFilename[] = "data/poses.txt";
-    const char rangesFilename[] = "data/ranges.txt";
+    Config* config = new Config (argc, argv);
+//    config -> print();
 
-    World world;
+    configuration c = config -> getConfig();
 
-    Robot robot (world);
+    delete config;
 
-    Simulation simulation (robot, posesFilename, rangesFilename);
+    World world (c);
+    Robot robot (world, c);
+    Simulation simulation (robot, c);
 
     if(!simulation.hasToSimulate()){
         cout << "Error reading the files for the simulation" << endl;
         return 1;
     }
 
-    Display display (600, 600, "Simulation!", 30, simulation);
-    display.setInterval();
+    Display display (c, simulation);
 
     display.loop();
 

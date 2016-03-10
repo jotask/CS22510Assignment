@@ -14,7 +14,7 @@
 
 class Robot {
 public:
-    Robot(World & world);
+    Robot(World & world, const configuration&);
     ~Robot();
 
     static const int NUMBER_SENSORS = 8;

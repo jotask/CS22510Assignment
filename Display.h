@@ -7,16 +7,17 @@
 
 class Display {
 public:
-    Display(unsigned int, unsigned int, const char*, unsigned int, Simulation&);
+    Display(const configuration&, Simulation&);
     ~Display();
 
     void loop();
-    void setInterval();
-
 
 private:
 
-    static bool isDebug;
+    bool isDebug;
+    bool saveScreenToImage;
+
+    int screenshot_num;
 
     sf::RenderWindow* window;
     Simulation* simulation;
