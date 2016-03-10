@@ -7,11 +7,11 @@
 class World {
 
 public:
-    World(const configuration&);
+    World();
     ~World();
 
-    static const int WORLD_WIDTH = 50;
-    static const int WORLD_HEIGHT = 50;
+    static const unsigned int WORLD_WIDTH = 50;
+    static const unsigned int WORLD_HEIGHT = 50;
     static constexpr double CELL_SIZE = 0.2;
 
     void printWorld(void);

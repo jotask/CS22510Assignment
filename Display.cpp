@@ -69,8 +69,8 @@ void Display::render() {
     int height = (sizeWindow.y / World::WORLD_HEIGHT);
 
     World* world = this -> simulation -> getWorld();
-    for(int i = 0; i < World::WORLD_HEIGHT; i++){
-        for(int j = 0; j < World::WORLD_WIDTH; j++){
+    for(unsigned int i = 0; i < World::WORLD_HEIGHT; i++){
+        for(unsigned int j = 0; j < World::WORLD_WIDTH; j++){
             Util::Cell cell = world -> getValueAt(i, j);
 
             sf::RectangleShape rectangle;

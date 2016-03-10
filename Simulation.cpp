@@ -1,7 +1,6 @@
 #include <iostream>
 #include <math.h>
 #include "Simulation.h"
-#include "Config.h"
 
 using namespace std;
 
@@ -25,7 +24,7 @@ Simulation::~Simulation() {
 }
 
 bool Simulation::hasToSimulate() {
-    return (!posesReaded.empty() && !rangesReaded.empty() && posesReaded.size() == rangesReaded.size());
+    return (!posesRead.empty() && !rangesRead.empty() && posesRead.size() == rangesRead.size());
 }
 
 bool Simulation::simulateStep() {
@@ -43,8 +42,8 @@ void Simulation::updateInformation() {
 
     // TODO Use QUEUE rather than vector
 
-    Util::Pose &pose = posesReaded.front();
-    vector<double> &ranges = rangesReaded.front();
+    Util::Pose &pose = posesRead.front();
+    vector<double> &ranges = rangesRead.front();
 
     // Remove robot from old map position
     this-> world->setValueAt(robot->getPosition()->getX(), robot->getPosition()->getY(), Util::EMPTY);
@@ -67,8 +66,8 @@ void Simulation::updateInformation() {
         sensors . at(i) -> setRead(ranges[i]);
     }
 
-    posesReaded.erase(posesReaded.begin());
-    rangesReaded.erase(rangesReaded.begin());
+    posesRead.erase(posesRead.begin());
+    rangesRead.erase(rangesRead.begin());
 
 }
 
@@ -114,7 +113,7 @@ void Simulation::render() {
 }
 
 bool Simulation::isFinishedSimulation() {
-    return ((this -> posesReaded.empty()) && (this -> rangesReaded.empty()));
+    return ((this ->posesRead.empty()) && (this ->rangesRead.empty()));
 }
 
 void Simulation::readRanges(const std::string file) {
@@ -137,7 +136,7 @@ void Simulation::readRanges(const std::string file) {
             iss >> tmp[i];
         }
 
-        rangesReaded.push_back(tmp);
+        rangesRead.push_back(tmp);
 
     }
 
@@ -163,7 +162,7 @@ void Simulation::readPoses(const std::string posesFile){
         iss >> pose.y;
         iss >> pose.o;
 
-        posesReaded.push_back(pose);
+        posesRead.push_back(pose);
     }
 
     infile.close();

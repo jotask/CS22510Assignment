@@ -1,7 +1,3 @@
-//
-// Created by Jota on 29/02/2016.
-//
-
 #ifndef CS22510_VECTOR2_H
 #define CS22510_VECTOR2_H
 

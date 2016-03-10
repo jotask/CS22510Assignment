@@ -1,8 +1,3 @@
-//
-// Created by Jota on 29/02/2016.
-//
-
-#include <iostream>
 #include "Vector2.h"
 
 Vector2::Vector2(int x, int y) {

@@ -14,7 +14,7 @@
 
 class Robot {
 public:
-    Robot(World & world, const configuration&);
+    Robot(World & world);
     ~Robot();
 
     static const int NUMBER_SENSORS = 8;
@@ -26,8 +26,6 @@ public:
     void setOrientation(int);
 
     World* getWorld();
-
-    void update();
 
      std::vector<Sensor*>& getSensors();
 

@@ -1,7 +1,3 @@
-//
-// Created by jota on 10/03/16.
-//
-
 #include "Config.h"
 
 using namespace std;
@@ -97,7 +93,7 @@ float Config::getFloat(std::string buff){
         token = buff.substr(0, pos);
         buff.erase(0, pos + DELIMITER.length());
     }
-    return std::atof(buff.c_str());
+    return (float) std::atof(buff.c_str());
 }
 
 unsigned int Config::getUnsignedInt(std::string buff){
@@ -107,7 +103,9 @@ unsigned int Config::getUnsignedInt(std::string buff){
         token = buff.substr(0, pos);
         buff.erase(0, pos + DELIMITER.length());
     }
-    return atoi(buff.c_str());
+    unsigned int result;
+    result = (unsigned int) abs(atoi(buff.c_str()));
+    return result;
 
 }
 

@@ -1,7 +1,3 @@
-//
-// Created by jota on 05/03/16.
-//
-
 #ifndef CS22510_UTIL_H
 #define CS22510_UTIL_H
 
@@ -34,7 +30,7 @@ public:
 
     static int realToVirtual(const double a){
         int tmp;
-        tmp = ( (50 * a) / (0.2 * 50 ) );
+        tmp = (int) ((50 * a) / (0.2 * 50 ) );
         return tmp;
     }
 

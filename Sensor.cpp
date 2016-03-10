@@ -1,26 +1,14 @@
-//
-// Created by Jota on 02/03/2016.
-//
-
-#include <iostream>
 #include "Sensor.h"
-
-Sensor::Sensor() {
-    this -> orientation = -1;
-    this -> degree = -1;
-}
 
 Sensor::Sensor(int orientation, int degree) {
     this ->  orientation = orientation;
     this -> degree = degree;
 }
 
-Sensor::~Sensor() {
-    std::cout << "~Sensor()" << std::endl;
-}
+Sensor::~Sensor() {}
 
-void Sensor::setRead(double readed) {
-    this -> read = readed;
+void Sensor::setRead(double read) {
+    this -> read = read;
 }
 
 double Sensor::getRead() {

@@ -37,10 +37,10 @@ private:
     Robot* robot;
 
     float WAIT;
-    clock_t nextTime;
+    float nextTime;
 
-    vector< Util::Pose > posesReaded;
-    vector< vector<double> > rangesReaded;
+    vector< Util::Pose > posesRead;
+    vector< vector<double> > rangesRead;
 
     void readPoses(const std::string );
     void readRanges(const std::string );

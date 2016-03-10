@@ -2,15 +2,12 @@
 // Created by Jose Vives on 29/02/2016.
 //
 
-#define _USE_MATH_DEFINES
-
 #include <iostream>
-#include <math.h>
 #include "Robot.h"
 
 using namespace std;
 
-Robot::Robot(World& world, const configuration& config) {
+Robot::Robot(World& world) {
     this-> world = &world;
     this -> position.set(0,0);
     this -> orientation = 0;
@@ -32,7 +29,11 @@ Robot::Robot(World& world, const configuration& config) {
 
 }
 
-Robot::~Robot() {}
+Robot::~Robot() {
+    for(Sensor* s: sensors){
+        delete(s);
+    }
+}
 
 Vector2* Robot::getPosition() {
     return &position;
