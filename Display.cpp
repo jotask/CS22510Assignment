@@ -11,7 +11,6 @@ Display::Display(const configuration& config, Simulation& sim) {
 
     this -> window = new sf::RenderWindow(sf::VideoMode(config.displayWidth, config.displayHeight),
                                           config.displayTitle, sf::Style::Close | sf::Style::Titlebar);
-    this -> window -> setFramerateLimit(config.displayFps);
 
     this -> screenshot_num = 0;
 

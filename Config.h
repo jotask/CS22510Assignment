@@ -17,7 +17,6 @@ typedef struct config{
     std::string displayTitle = "Simulation";
     unsigned int displayWidth = 600;
     unsigned int displayHeight = 600;
-    unsigned int displayFps = 30;
 
 } configuration;
 

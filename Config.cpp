@@ -27,7 +27,6 @@ void Config::print() {
     cout << "Title: " << config.displayTitle << endl;
     cout << "Width: " << config.displayWidth << endl;
     cout << "Height: " << config.displayHeight << endl;
-    cout << "Fps: " << config.displayFps << endl;
 
 }
 
@@ -82,13 +81,6 @@ void Config::readArguments(const int argc, char* argv[]){
                 height = getUnsignedInt(buff);
 
                 config.displayHeight = height;
-
-            }else if(command == "-fps"){
-
-                unsigned int fps;
-                fps = getUnsignedInt(buff);
-
-                config.displayFps = fps;
 
             }
 
