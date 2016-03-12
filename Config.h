@@ -54,7 +54,10 @@ typedef struct config{
  */
 class Config{
 public:
+    // Constructor
     Config(const int, char**);
+
+    // Destructor
     ~Config();
 
     // Get a copy of the configuration
@@ -82,10 +85,6 @@ private:
 
     // From a string return his value has a float
     float getFloat(std::string);
-
-    // Print all the configuration.
-    // This is provided for debug purposes
-    void print();
 
 };
 
