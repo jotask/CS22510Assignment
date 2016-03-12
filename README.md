@@ -15,7 +15,7 @@ Go to the terminal and run `make` command. This read the Makefile and they know 
 
 ## Usage
 
-On a terminal use the follow command: `./Assignment` for run the program.
+On a terminal go to the compiled program and use the follow command for run it: `./Assignment`
 
 The program have parameters that can be changed by passing arguments when it runs.
 
