@@ -22,9 +22,6 @@ public:
     // The cell size
     const double CELL_SIZE;
 
-    // Print the world
-    void printWorld(void);
-
     // Convert virtual coordinates to real coordinates
     double virtualToReal(const int&);
 

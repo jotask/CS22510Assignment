@@ -35,34 +35,6 @@ World::~World() {
 }
 
 /**
- * Print the world on the console
- */
-void World::printWorld() {
-    // Print the world
-    for(unsigned int x = 0; x < World::WORLD_WIDTH; x++){
-        for(unsigned int y = 0; y < World::WORLD_HEIGHT; y++){
-            std::cout << '[';
-            switch (world[x][y]){
-                case util::Cell::OBSTACLE:
-                    std::cout << 'O';
-                    break;
-                case util::Cell::ROBOT:
-                    std::cout << 'R';
-                    break;
-                case util::Cell:: EMPTY:
-                    std::cout << ' ';
-                default:
-                    break;
-            }
-            std::cout << ']';
-        }
-        std::cout << std::endl;
-    }
-
-    std::cout << std::endl << std::endl;
-}
-
-/**
  * Get the value from one specified cell. This check if the dimension is inside our world dimensions.
  * If not it return an empty cell. This can be improve by some invalid cell or something similar
  *
