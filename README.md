@@ -1,10 +1,7 @@
 
-# CS22510 Assignment: Robot simulation
+# CS22510 Assignment: Robot Simulation
 
-TODO: Write a project description
 This program read two files, stores his values and initialize a simulation for a robot and his sensor, and build a world with obstacle from the data readed from his sensors
-
-## Requirements
 
 ## Installation
 
@@ -13,6 +10,17 @@ Go to the terminal and run `make` command. This read the Makefile and they know 
 ## Usage
 
 On a terminal use the follow command: `./Assignment` for run the program
+
+## Files Included
+
+### World.h World.cpp
+This files contains the definition and declaration for the world. It stores the world and all the calculation and logic needed.
+
+### Robot.h Robot.cpp
+This files contains the definition and declaration for the robot class and all the logic he need, like all his sensors, his position, the world that below, etc.
+
+### Sensor.h Sensor.cpp
+This files contains the definition and declaration for the sensor class. This class contains all the information that a sensor needs.
 
 ## Credits
 
