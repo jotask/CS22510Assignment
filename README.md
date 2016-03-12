@@ -48,6 +48,12 @@ Set the screen height. Example `-dHeight=250` set the height of the scren to 250
 `-cellsize`
 Set the size of the cell for the world. Example `-cellsize=0.75` set the cellsize to be 0.75 meters
 
+`-wWidth`
+Set the world width. Example `-wWidth=25` set the world width to 25. The world have 25 cell width
+
+`-wWidth`
+Set the world height. Example `-wHeight=25` set the world height to 25. The world have 25 cell height
+
 If any argument has been passed to the program. They have the following default values.
 > Debug is disabled
 
