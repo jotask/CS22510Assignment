@@ -105,6 +105,8 @@ void Display::render() {
     // Get the information of each cell and draw it on the screen
     for(unsigned int i = 0; i < WORLD_HEIGHT; i++){
         for(unsigned int j = 0; j < WORLD_WIDTH; j++){
+
+            // Get the value from the current cell
             util::Cell cell = world -> getValueAt(i, j);
 
             // Create a rectangle
