@@ -11,7 +11,7 @@ Go to the terminal and run `make` command. This read the Makefile and they know 
 
 On a terminal use the follow command: `./Assignment` for run the program.
 
-The program have parameters that can be changed by passing arguments when runs.
+The program have parameters that can be changed by passing arguments when it runs.
 
 ## Arguments
 
