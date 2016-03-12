@@ -3,6 +3,12 @@
 
 This program read two files, stores his values and initialize a simulation for a robot and his sensor, and build a world with obstacle from the data readed from his sensors
 
+## Requirements
+
+**cmake**: version 3.2 or higher
+
+**sfml**: version 2.3
+
 ## Installation
 
 Go to the terminal and run `make` command. This read the Makefile and they know everything they need to compile.
@@ -59,7 +65,7 @@ If any argument has been passed to the program. They have the following default 
 
 > A robot has 8 sensors for default
 
-> The world has 50 cell long and 50 lengt high
+> The world has 50 cells long and 50 cells high
 
 > The size for each cell is 0.2 meters.
 
