@@ -5,8 +5,6 @@
 #include "Simulation.h"
 #include "Display.h"
 
-using namespace std;
-
 /**
  * Main function where all start
  * Here is instantiate all the main classes
@@ -36,15 +34,15 @@ int main(int argc, char* argv[]) {
 
     // Quick check for see if the files are correct and everything is ready for the simulation
     if(!simulation.hasToSimulate()){
-        cout << "Error reading the files for the simulation" << endl;
+        std::cout << "Error reading the files for the simulation" << std::endl;
         return 1;
     }
 
-//    // Instantiate the display
-//    Display display (c, simulation);
-//
-//    // Init the animation
-//    display.loop();
+    // Instantiate the display
+    Display display (c, simulation);
+
+    // Init the animation
+    display.loop();
 
     // Successfully exit the program
     return 0;

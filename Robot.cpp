@@ -5,8 +5,6 @@
 #include <iostream>
 #include "Robot.h"
 
-using namespace std;
-
 Robot::Robot(World& world, const configuration& config) : NUMBER_SENSORS(config.numberSensors) {
 
     this-> world = &world;
@@ -40,7 +38,7 @@ Vector2* Robot::getPosition() {
     return &position;
 }
 
-void Robot::setPosition(int x, int y) {
+void Robot::setPosition(unsigned int x, unsigned int y) {
     this -> position.set(x, y);
 }
 
@@ -56,7 +54,7 @@ World* Robot::getWorld(){
     return this -> world;
 }
 
-vector<Sensor*>& Robot::getSensors(){
+std::vector<Sensor*>& Robot::getSensors(){
     return this -> sensors;
 }
 

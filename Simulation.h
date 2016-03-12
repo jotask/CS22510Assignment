@@ -6,6 +6,7 @@
 #include <sstream>
 #include <vector>
 #include <SFML/System/Time.hpp>
+#include <queue>
 #include "World.h"
 #include "Robot.h"
 #include "Config.h"
@@ -39,8 +40,8 @@ private:
     float WAIT;
     float nextTime;
 
-    vector< util::Pose > posesRead;
-    vector< vector<double> > rangesRead;
+    std::queue<util::Pose> posesRead;
+    std::queue< std::vector<double> > rangesRead;
 
     void readPoses(const std::string );
     void readRanges(const std::string );

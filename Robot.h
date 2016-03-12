@@ -1,10 +1,5 @@
-//
-// Created by Jose Vives on 29/02/2016.
-//
-
 #ifndef CS22510_ROBOT_H
 #define CS22510_ROBOT_H
-
 
 #include <array>
 #include <vector>
@@ -18,7 +13,7 @@ public:
     ~Robot();
 
     Vector2* getPosition();
-    void setPosition(int, int);
+    void setPosition(unsigned int, unsigned int);
 
     int getOrientation();
     void setOrientation(int);

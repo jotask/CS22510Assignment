@@ -1,7 +1,4 @@
-#include <iostream>
 #include "World.h"
-
-using namespace std;
 
 World::World(const configuration& config) : WORLD_WIDTH(config.worldWidth), WORLD_HEIGHT(config.worldHeight),
 CELL_SIZE(config.cellSize){
@@ -33,33 +30,34 @@ void World::printWorld() {
     // Print the world
     for(unsigned int x = 0; x < World::WORLD_WIDTH; x++){
         for(unsigned int y = 0; y < World::WORLD_HEIGHT; y++){
-            cout << '[';
+            std::cout << '[';
             switch (world[x][y]){
                 case util::Cell::OBSTACLE:
-                    cout << 'O';
+                    std::cout << 'O';
                     break;
                 case util::Cell::ROBOT:
-                    cout << 'R';
+                    std::cout << 'R';
                     break;
                 case util::Cell:: EMPTY:
-                    cout << ' ';
+                    std::cout << ' ';
                 default:
                     break;
             }
-            cout << ']';
+            std::cout << ']';
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 
-    cout << endl << endl;
+    std::cout << std::endl << std::endl;
 }
 
 util::Cell World::getValueAt(int x, int y) {
     return this -> world[x][y];
 }
 
-void World::setValueAt(int x, int y, util::Cell type) {
-    this -> world[x][y] = type;
+void World::setValueAt(unsigned int x, unsigned int y, util::Cell type) {
+    if(x < WORLD_WIDTH && y < WORLD_HEIGHT)
+        this -> world[x][y] = type;
 }
 
 double World::virtualToReal(const int &a) {
@@ -70,6 +68,6 @@ double World::virtualToReal(const int &a) {
 
 unsigned int World::realToVirtual(const double &a) {
     unsigned int tmp;
-    tmp = (int) ((WORLD_WIDTH * a) / (CELL_SIZE * (WORLD_WIDTH)));
+    tmp = (unsigned int) ((WORLD_WIDTH * a) / (CELL_SIZE * (WORLD_WIDTH)));
     return tmp;
 }

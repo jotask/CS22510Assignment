@@ -1,6 +1,6 @@
 #include "Vector2.h"
 
-Vector2::Vector2(int x, int y) {
+Vector2::Vector2(unsigned int x, unsigned int y) {
     this -> init(x, y);
 }
 
@@ -11,28 +11,28 @@ Vector2::Vector2() {
 Vector2::~Vector2() {
 }
 
-void Vector2::init(int x, int y) {
+void Vector2::init(unsigned int x, unsigned int y) {
     this->setX(x);
     this->setY(y);
 }
 
-int Vector2::getX() {
+unsigned int Vector2::getX() {
     return this -> x;
 }
 
-int Vector2::getY() {
+unsigned int Vector2::getY() {
     return this -> y;
 }
 
-void Vector2::setX(int x) {
+void Vector2::setX(unsigned int x) {
     this -> x = x;
 }
 
-void Vector2::setY(int y) {
+void Vector2::setY(unsigned int y) {
     this -> y = y;
 }
 
-void Vector2::set(int x, int y){
+void Vector2::set(unsigned int x, unsigned int y){
     this -> setX(x);
     this -> setY(y);
 }

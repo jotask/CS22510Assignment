@@ -21,7 +21,7 @@ public:
     unsigned int realToVirtual(const double&);
 
     util::Cell getValueAt(int, int);
-    void setValueAt(int, int, util::Cell);
+    void setValueAt(unsigned int, unsigned int, util::Cell);
 
 private:
 

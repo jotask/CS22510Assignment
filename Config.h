@@ -15,7 +15,7 @@ typedef struct config{
     bool debug = false;
 
     // Delay for the simulation
-    float delay = 0;
+    float delay = 0.5;
 
     // Enable or disable save each step result to an image
     bool saveScreenShoots = false;
@@ -44,6 +44,7 @@ typedef struct config{
     // Height for the virtual world
     unsigned int worldHeight = 50;
 
+    // The size of the cell
     double cellSize = 0.2;
 
 } configuration;

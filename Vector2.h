@@ -5,19 +5,19 @@
 class Vector2 {
 public:
     Vector2();
-    Vector2(int, int);
+    Vector2(unsigned int, unsigned int);
     ~Vector2();
 
-    int getX(void);
-    int getY(void);
-    void setX(int);
-    void setY(int);
-    void set(int, int);
+    unsigned int getX(void);
+    unsigned int getY(void);
+    void setX(unsigned int);
+    void setY(unsigned int);
+    void set(unsigned int, unsigned int);
 
 private:
-    int x;
-    int y;
-    void init(int, int);
+    unsigned int x;
+    unsigned int y;
+    void init(unsigned int, unsigned int);
 
 };
 

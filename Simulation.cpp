@@ -2,8 +2,6 @@
 #include <math.h>
 #include "Simulation.h"
 
-using namespace std;
-
 Simulation::Simulation(Robot& robot, const configuration& config) {
 
     this -> WAIT = config.delay;
@@ -40,8 +38,6 @@ bool Simulation::simulateStep() {
 
 void Simulation::updateInformation() {
 
-    // TODO Use QUEUE rather than vector
-
     util::Pose &pose = posesRead.front();
     vector<double> &ranges = rangesRead.front();
 
@@ -49,7 +45,7 @@ void Simulation::updateInformation() {
     this-> world->setValueAt(robot->getPosition()->getX(), robot->getPosition()->getY(), util::Cell::EMPTY);
 
     // Update robot position and orientation
-    int x, y;
+    unsigned int x, y;
     x = world -> realToVirtual(pose.x);
     y = world -> realToVirtual(pose.y);
     robot -> setPosition(x, y);
@@ -66,8 +62,8 @@ void Simulation::updateInformation() {
         sensors . at(i) -> setRead(ranges[i]);
     }
 
-    posesRead.erase(posesRead.begin());
-    rangesRead.erase(rangesRead.begin());
+    posesRead.pop();
+    rangesRead.pop();
 
 }
 
@@ -96,7 +92,7 @@ void Simulation::step() {
         obstacleX = (xr + (valueRead * cos(orientationRadian)));
         obstacleY = (xy + (valueRead * sin(orientationRadian)));
 
-        int oX, oY;
+        unsigned int oX, oY;
         oX = world -> realToVirtual(obstacleX);
         oY = world -> realToVirtual(obstacleY);
 
@@ -138,7 +134,7 @@ void Simulation::readRanges(const std::string file) {
             iss >> tmp[i];
         }
 
-        rangesRead.push_back(tmp);
+        rangesRead.push(tmp);
 
     }
 
@@ -164,7 +160,7 @@ void Simulation::readPoses(const std::string posesFile){
         iss >> pose.y;
         iss >> pose.o;
 
-        posesRead.push_back(pose);
+        posesRead.push(pose);
     }
 
     infile.close();
