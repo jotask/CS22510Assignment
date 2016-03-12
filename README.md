@@ -7,7 +7,11 @@ This program read two files, stores his values and initialize a simulation for a
 
 **cmake**: version 3.2 or higher
 
+Everything you need to know for install cmake you can found it on his [website tutorial](https://cmake.org/install/)
+
 **sfml**: version 2.3
+
+for install sfml on a linux machine, you can follow the tutorial from the [sfml page](http://www.sfml-dev.org/tutorials/2.3/start-linux.php)
 
 ## Installation
 
@@ -16,6 +20,8 @@ Go to the terminal and run `make` command. This read the Makefile and they know 
 ## Usage
 
 On a terminal go to the compiled program and use the follow command for run it: `./Assignment`
+
+Once the program has been opened you can see the simulation on the created screen. For stop the simulation just close the screen.
 
 The program have parameters that can be changed by passing arguments when it runs.
 
