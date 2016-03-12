@@ -2,6 +2,12 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include "Display.h"
 
+/**
+ * Constructor for this class.
+ *
+ * @arg configuration: Reference to the configuration struct
+ * @arg simulation: Reference to the simulation manager
+ */
 Display::Display(const configuration& config, Simulation& sim) {
 
     this -> isDebug = config.debug;
@@ -16,13 +22,21 @@ Display::Display(const configuration& config, Simulation& sim) {
 
 }
 
+/**
+ * Destructor for this class delete the window from the heap
+ */
 Display::~Display() {
     delete(window);
 }
 
-
+/**
+ * Loop for update and render the simulation
+ */
 void Display::loop() {
+
+    // keep looping until the windows get close
     while(window -> isOpen()) {
+
         // Handle events
         sf::Event event;
         while(window -> pollEvent(event)){
@@ -45,13 +59,20 @@ void Display::loop() {
 
 }
 
+/**
+ * Update all the logic for the simulation.
+ */
 void Display::update() {
 
+    // Check if the simulation has finished. If is finished exit the function
     if(simulation -> isFinishedSimulation()){
         return;
     }
 
+    // If the simulation has simulated and we want store the frame
     if(simulation -> simulateStep() && saveScreenToImage){
+
+        // Make a capture of the screen and stored it
         sf::Image image = window -> capture();
         std::stringstream filename;
         filename << "data/screenshot_" << screenshot_num++ << ".png";
@@ -60,27 +81,39 @@ void Display::update() {
 
 }
 
+/**
+ * Render the simulation
+ */
 void Display::render() {
 
+    // Clear the window
     window -> clear(sf::Color::Black);
 
+    // Get a pointer to the world. For quicker access
     World* world;
     world = simulation->getWorld();
 
+    // Get whe width and height of the world
     unsigned int WORLD_WIDTH = world -> WORLD_WIDTH;
     unsigned int WORLD_HEIGHT = world -> WORLD_HEIGHT;
 
+    // Variable for know how the size of the cell we want to draw on screen
     const sf::Vector2u& sizeWindow = window->getSize();
     int width = (sizeWindow.x / WORLD_WIDTH);
     int height = (sizeWindow.y / WORLD_HEIGHT);
 
+    // Get the information of each cell and draw it on the screen
     for(unsigned int i = 0; i < WORLD_HEIGHT; i++){
         for(unsigned int j = 0; j < WORLD_WIDTH; j++){
             util::Cell cell = world -> getValueAt(i, j);
 
+            // Create a rectangle
             sf::RectangleShape rectangle;
+
+            // Set the size of the triangle
             rectangle.setSize(sf::Vector2f(width, height));
 
+            // Know which type of cell is, and choose a color
             switch (cell){
                 case util::Cell::OBSTACLE:
                     rectangle.setFillColor(sf::Color::Black);
@@ -94,15 +127,18 @@ void Display::render() {
                     break;
             }
 
+            // If is debug draw the outline for the rectangle
             if(isDebug) {
                 rectangle.setOutlineColor(sf::Color::Red);
                 rectangle.setOutlineThickness(1);
             }
 
+            // Set the position of the cell on the screen
             rectangle.setPosition(i * width, j * height);
             window -> draw(rectangle);
         }
     }
 
+    // Draw everything on the screen
     window -> display();
 }
