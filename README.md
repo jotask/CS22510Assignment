@@ -34,13 +34,25 @@ Set the file for the ranges data. Example: `-ranges=data/ranges.txt` set the pro
 Set how many sensors the robot is going to have. Example: `-sensors=3` set the robot is going to have only 3 sensors build in.
 
 `-dWidth`
-Set the world width length. Example `-dWidth=25` set the world that is going to have 25 cells width
+Set the screen width. Example `-dWidth=250` set the width of the scren to 250 pixels width
 
 `-dHeight`
-Set the world height length. Example `-dHeight=25` set the world that is going to have 25 cells height
+Set the screen height. Example `-dHeight=250` set the height of the scren to 250 pixels height
 
 `-cellsize`
 Set the size of the cell for the world. Example `-cellsize=0.75` set the cellsize to be 0.75 meters
+
+If any argument has been passed to the program. They have the following default values.
+> Debug is disabled
+> Does not make a screen shot for each step on the simulation
+> The delay is 0.5 seconds
+> The default poses file is "data/poses.txt"
+> The default ranges files is "data/ranges.txt"
+> The width of the screen is 600 pixels
+> The height of the screen is 600 pixels
+> A robot has 8 sensors for default
+> The world has 50 cell long and 50 lengt high
+> The size for each cell is 0.2 meters.
 
 ## Files Included
 
