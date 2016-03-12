@@ -9,18 +9,64 @@ Go to the terminal and run `make` command. This read the Makefile and they know 
 
 ## Usage
 
-On a terminal use the follow command: `./Assignment` for run the program
+On a terminal use the follow command: `./Assignment` for run the program.
+
+The program have parameters that can be changed by passing arguments when runs.
+
+## Arguments
+
+`-debug`
+Enable the debug information. At the moment only draw the border of each cell on the world. For know where are each cell.
+
+`-delay`
+Set the delay for each simulation step. Example: the following argument `-delay=2.5` set the delay for each step on the simulation to be 2.5 seconds.
+
+`-savescreen`
+Store on an image each step of the simulation. The files are stored on the data folder
+
+`-poses`
+Set the file for the poses data. Example: `-poses=data/poses.txt` set the program read that file for the poses information
+
+`-ranges`
+Set the file for the ranges data. Example: `-ranges=data/ranges.txt` set the program read that file for the ranges information
+
+`-sensors`
+Set how many sensors the robot is going to have. Example: `-sensors=3` set the robot is going to have only 3 sensors build in.
+
+`-dWidth`
+Set the world width length. Example `-dWidth=25` set the world that is going to have 25 cells width
+
+`-dHeight`
+Set the world height length. Example `-dHeight=25` set the world that is going to have 25 cells height
+
+`-cellsize`
+Set the size of the cell for the world. Example `-cellsize=0.75` set the cellsize to be 0.75 meters
 
 ## Files Included
 
-### World.h World.cpp
+#### World.h World.cpp
 This files contains the definition and declaration for the world. It stores the world and all the calculation and logic needed.
 
-### Robot.h Robot.cpp
+#### Robot.h Robot.cpp
 This files contains the definition and declaration for the robot class and all the logic he need, like all his sensors, his position, the world that below, etc.
 
-### Sensor.h Sensor.cpp
+#### Sensor.h Sensor.cpp
 This files contains the definition and declaration for the sensor class. This class contains all the information that a sensor needs.
+
+#### Display.h Display.cc
+This files contains the definition and declaration for the Display class. This class holds and handle all the logic needed for crate the windows, handle his events and draw everything on the screen
+
+#### Vector.h Vector.cpp
+This file contains the definition and declaration for the Vector class. This class is a simple class for store the position of on robot.
+
+#### Config.h Config.cpp
+This file contains the definition and declaration for the config class. This class read all the arguments passed by the program when it runs and build a configuration for set all the values for the program run.
+
+#### Util.hpp Util.cpp
+This file contains the definition and declaration of one namespace. This namespace is used to store an enum of each type of cell possible, a struct for a pose and the logic for convert between degree to radians.
+
+#### Main.cpp
+Where the main function live. Here is where everything start and ends. 
 
 ## Credits
 
