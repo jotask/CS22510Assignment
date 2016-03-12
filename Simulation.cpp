@@ -42,21 +42,21 @@ void Simulation::updateInformation() {
 
     // TODO Use QUEUE rather than vector
 
-    Util::Pose &pose = posesRead.front();
+    util::Pose &pose = posesRead.front();
     vector<double> &ranges = rangesRead.front();
 
     // Remove robot from old map position
-    this-> world->setValueAt(robot->getPosition()->getX(), robot->getPosition()->getY(), Util::EMPTY);
+    this-> world->setValueAt(robot->getPosition()->getX(), robot->getPosition()->getY(), util::Cell::EMPTY);
 
     // Update robot position and orientation
     int x, y;
-    x = Util::realToVirtual(pose.x);
-    y = Util::realToVirtual(pose.y);
+    x = world -> realToVirtual(pose.x);
+    y = world -> realToVirtual(pose.y);
     robot -> setPosition(x, y);
     robot -> setOrientation(pose.o);
 
     // Let know to the map where is the robot now
-    this-> world->setValueAt(robot->getPosition()->getX(), robot->getPosition()->getY(), Util::ROBOT);
+    this-> world->setValueAt(robot->getPosition()->getX(), robot->getPosition()->getY(), util::Cell::ROBOT);
 
     // Get all sensors from the robot
     vector<Sensor*>& sensors = robot -> getSensors();
@@ -85,11 +85,11 @@ void Simulation::step() {
         }
 
         double orientationRadian;
-        orientationRadian = Util::degreeToRadian(robot->getOrientation() + s->getDegree());
+        orientationRadian = util::degreeToRadian(robot->getOrientation() + s->getDegree());
 
         double xr, xy;
-        xr = Util::virtualToReal(robot->getPosition()->getX());
-        xy = Util::virtualToReal(robot->getPosition()->getY());
+        xr = world -> virtualToReal(robot->getPosition()->getX());
+        xy = world -> virtualToReal(robot->getPosition()->getY());
 
         double obstacleX, obstacleY;
 
@@ -97,10 +97,10 @@ void Simulation::step() {
         obstacleY = (xy + (valueRead * sin(orientationRadian)));
 
         int oX, oY;
-        oX = Util::realToVirtual(obstacleX);
-        oY = Util::realToVirtual(obstacleY);
+        oX = world -> realToVirtual(obstacleX);
+        oY = world -> realToVirtual(obstacleY);
 
-        world->setValueAt(oX, oY, Util::Cell::OBSTACLE);
+        world->setValueAt(oX, oY, util::Cell::OBSTACLE);
 
     }
 
@@ -125,14 +125,16 @@ void Simulation::readRanges(const std::string file) {
         return;
     }
 
+    unsigned int numberSensors = robot -> getNumberOfSensors();
+
     std::string line;
     while(std::getline(infile, line)){
 
         std::istringstream iss (line);
 
-        vector<double> tmp(Robot::NUMBER_SENSORS);
+        vector<double> tmp(numberSensors);
 
-        for(int i = 0; i < Robot::NUMBER_SENSORS; i++){
+        for(unsigned int i = 0; i < numberSensors; i++){
             iss >> tmp[i];
         }
 
@@ -157,7 +159,7 @@ void Simulation::readPoses(const std::string posesFile){
     while(std::getline(infile, line)){
         std::istringstream iss(line);
 
-        Util::Pose pose;
+        util::Pose pose;
         iss >> pose.x;
         iss >> pose.y;
         iss >> pose.o;

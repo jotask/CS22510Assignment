@@ -64,27 +64,32 @@ void Display::render() {
 
     window -> clear(sf::Color::Black);
 
-    const sf::Vector2u& sizeWindow = window->getSize();
-    int width = (sizeWindow.x / World::WORLD_WIDTH);
-    int height = (sizeWindow.y / World::WORLD_HEIGHT);
+    World* world;
+    world = simulation->getWorld();
 
-    World* world = this -> simulation -> getWorld();
-    for(unsigned int i = 0; i < World::WORLD_HEIGHT; i++){
-        for(unsigned int j = 0; j < World::WORLD_WIDTH; j++){
-            Util::Cell cell = world -> getValueAt(i, j);
+    unsigned int WORLD_WIDTH = world -> WORLD_WIDTH;
+    unsigned int WORLD_HEIGHT = world -> WORLD_HEIGHT;
+
+    const sf::Vector2u& sizeWindow = window->getSize();
+    int width = (sizeWindow.x / WORLD_WIDTH);
+    int height = (sizeWindow.y / WORLD_HEIGHT);
+
+    for(unsigned int i = 0; i < WORLD_HEIGHT; i++){
+        for(unsigned int j = 0; j < WORLD_WIDTH; j++){
+            util::Cell cell = world -> getValueAt(i, j);
 
             sf::RectangleShape rectangle;
             rectangle.setSize(sf::Vector2f(width, height));
 
             switch (cell){
-                case Util::Cell::OBSTACLE:
+                case util::Cell::OBSTACLE:
                     rectangle.setFillColor(sf::Color::Black);
                     break;
-                case Util::Cell::ROBOT:
+                case util::Cell::ROBOT:
                     rectangle.setFillColor(sf::Color::Red);
                     break;
                 default:
-                case Util::Cell::EMPTY:
+                case util::Cell::EMPTY:
                     rectangle.setFillColor(sf::Color::White);
                     break;
             }

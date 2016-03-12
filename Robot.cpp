@@ -7,7 +7,8 @@
 
 using namespace std;
 
-Robot::Robot(World& world) {
+Robot::Robot(World& world, const configuration& config) : NUMBER_SENSORS(config.numberSensors) {
+
     this-> world = &world;
     this -> position.set(0,0);
     this -> orientation = 0;
@@ -21,7 +22,7 @@ Robot::Robot(World& world) {
     separation = 360 / NUMBER_SENSORS;
 
     // Add all sensors to the robot
-    for(int i = 0; i  < NUMBER_SENSORS; i++){
+    for(unsigned int i = 0; i  < NUMBER_SENSORS; i++){
         Sensor* s = new Sensor(i, degree);
         this -> sensors . push_back(s);
         degree += separation;
@@ -57,4 +58,8 @@ World* Robot::getWorld(){
 
 vector<Sensor*>& Robot::getSensors(){
     return this -> sensors;
+}
+
+unsigned int Robot::getNumberOfSensors() {
+    return this -> NUMBER_SENSORS;
 }

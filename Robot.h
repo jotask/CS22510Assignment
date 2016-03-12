@@ -14,16 +14,16 @@
 
 class Robot {
 public:
-    Robot(World & world);
+    Robot(World & world, const configuration&);
     ~Robot();
-
-    static const int NUMBER_SENSORS = 8;
 
     Vector2* getPosition();
     void setPosition(int, int);
 
     int getOrientation();
     void setOrientation(int);
+
+    unsigned int getNumberOfSensors();
 
     World* getWorld();
 
@@ -33,6 +33,8 @@ private:
     World *world;
     Vector2 position;
     int orientation;
+
+    const unsigned int NUMBER_SENSORS;
 
     std::vector<Sensor*> sensors;
 

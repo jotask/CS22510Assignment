@@ -39,7 +39,7 @@ private:
     float WAIT;
     float nextTime;
 
-    vector< Util::Pose > posesRead;
+    vector< util::Pose > posesRead;
     vector< vector<double> > rangesRead;
 
     void readPoses(const std::string );

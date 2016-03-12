@@ -35,6 +35,17 @@ typedef struct config{
     // Display Height
     unsigned int displayHeight = 600;
 
+    // Number of sensor the robot have
+    unsigned int numberSensors = 8;
+
+    // Width for the virtual world
+    unsigned int worldWidth = 50;
+
+    // Height for the virtual world
+    unsigned int worldHeight = 50;
+
+    double cellSize = 0.2;
+
 } configuration;
 
 /**

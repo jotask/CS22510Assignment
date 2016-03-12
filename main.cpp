@@ -26,10 +26,10 @@ int main(int argc, char* argv[]) {
     delete config;
 
     // Instantiate the world
-    World world;
+    World world (c);
 
     // Instantiate the robot
-    Robot robot (world);
+    Robot robot (world, c);
 
     // Instantiate the simulation handler
     Simulation simulation (robot, c);
@@ -40,11 +40,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Instantiate the display
-    Display display (c, simulation);
-
-    // Init the animation
-    display.loop();
+//    // Instantiate the display
+//    Display display (c, simulation);
+//
+//    // Init the animation
+//    display.loop();
 
     // Successfully exit the program
     return 0;

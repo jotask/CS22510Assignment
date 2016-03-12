@@ -1,27 +1,31 @@
 #ifndef CS22510_WORLD_H
 #define CS22510_WORLD_H
 
-#include "Util.h"
 #include "Config.h"
+#include "Util.hpp"
 
 class World {
 
 public:
-    World();
+    World(const configuration&);
     ~World();
 
-    static const unsigned int WORLD_WIDTH = 50;
-    static const unsigned int WORLD_HEIGHT = 50;
-    static constexpr double CELL_SIZE = 0.2;
+    const unsigned int WORLD_WIDTH;
+    const unsigned int WORLD_HEIGHT;
+    const double CELL_SIZE;
 
     void printWorld(void);
 
-    Util::Cell getValueAt(int, int);
-    void setValueAt(int, int, Util::Cell);
+
+    double virtualToReal(const int&);
+    unsigned int realToVirtual(const double&);
+
+    util::Cell getValueAt(int, int);
+    void setValueAt(int, int, util::Cell);
 
 private:
 
-    Util::Cell world [WORLD_WIDTH][WORLD_HEIGHT];
+    util::Cell** world;
 
 };
 
