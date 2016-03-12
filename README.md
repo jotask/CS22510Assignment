@@ -44,14 +44,23 @@ Set the size of the cell for the world. Example `-cellsize=0.75` set the cellsiz
 
 If any argument has been passed to the program. They have the following default values.
 > Debug is disabled
+
 > Does not make a screen shot for each step on the simulation
+
 > The delay is 0.5 seconds
+
 > The default poses file is "data/poses.txt"
+
 > The default ranges files is "data/ranges.txt"
+
 > The width of the screen is 600 pixels
+
 > The height of the screen is 600 pixels
+
 > A robot has 8 sensors for default
+
 > The world has 50 cell long and 50 lengt high
+
 > The size for each cell is 0.2 meters.
 
 ## Files Included
