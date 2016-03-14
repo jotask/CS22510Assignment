@@ -1,9 +1,9 @@
 
 # CS22510 Assignment: Robot Simulation
 
-This program read two files, stores his values and initialize a simulation for a robot and his sensor, and build a world with obstacle from the data readed from his sensors
+This code has been written for CS22510 for Aberystwyth University. We have been requested to build a robot simulation that reads data for his sensor and builds a grid representing the world discovered. The poses and the data from his sensors are provided from two differents files. This program read two files, stores his values and initialize a simulation for a robot and his sensor and build a world with obstacle from the data read from his sensors.
 
-## Requirements
+## Tools and Librarys used
 
 **cmake**: version 3.2 or higher
 
@@ -15,7 +15,7 @@ for install sfml on a linux machine, you can follow the tutorial from the [sfml 
 
 ## Installation
 
-Go to the terminal and run `make` command. This read the Makefile and they know everything they need to compile.
+On the terminal, run `make`. This compile all code and make ready for run the program.
 
 ## Usage
 
@@ -65,7 +65,7 @@ If any argument has been passed to the program. They have the following default 
 
 > Does not make a screen shot for each step on the simulation
 
-> The delay is 0.5 seconds
+> The delay is 1 seconds
 
 > The default poses file is "data/poses.txt"
 
