@@ -23,10 +23,10 @@ public:
 private:
 
     // Boolean for display on the screen debug information
-    bool isDebug;
+    const bool isDebug;
 
     // Boolean for know if we need to store each render step result to an image
-    bool saveScreenToImage;
+    const bool saveScreenToImage;
 
     // Know how many screenshoots has been stored. This number is incremented each time an
     // screen has been saved and is used to the image filename

@@ -13,7 +13,6 @@ using namespace std;
  */
 Simulation::Simulation(Robot& robot, const configuration& config) : WAIT((unsigned long int)(config.delay * 1000)) {
 
-
     // Set variables for this instance
     this -> world = robot.getWorld();
     this -> robot = &robot;

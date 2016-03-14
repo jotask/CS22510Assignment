@@ -15,7 +15,7 @@ typedef struct config{
     bool debug = false;
 
     // Delay for the simulation
-    float delay = 0.5;
+    float delay = 1;
 
     // Enable or disable save each step result to an image
     bool saveScreenShoots = false;
@@ -27,7 +27,7 @@ typedef struct config{
     std::string rangesFile = "data/ranges.txt";
 
     // Display bar title
-    const std::string displayTitle = "Simulation";
+    const std::string displayTitle = "Robot Simulation";
 
     // Display Width
     unsigned int displayWidth = 600;
@@ -66,7 +66,7 @@ public:
 private:
 
     // Constant for know which is the delimiter used on the arguments
-    const std::string DELIMITER = ":";
+    const std::string DELIMITER = "=";
 
     // The configuration struct
     configuration config;

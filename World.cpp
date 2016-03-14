@@ -6,18 +6,18 @@
  * @arg config: reference to the configuration
  */
 World::World(const configuration& config) : WORLD_WIDTH(config.worldWidth), WORLD_HEIGHT(config.worldHeight),
-CELL_SIZE(config.cellSize){
+                                            CELL_SIZE(config.cellSize){
 
     // Create the world on the heap
-    world = new util::Cell*[WORLD_WIDTH];
-    for(unsigned int i = 0; i < WORLD_WIDTH; i++){
-        world[i] = new util::Cell[WORLD_HEIGHT];
+    world = new util::Cell*[WORLD_HEIGHT];
+    for(unsigned int i = 0; i < WORLD_HEIGHT; i++){
+        world[i] = new util::Cell[WORLD_WIDTH];
     }
 
     // Initialize the world with an empty grid
-    for(unsigned int x = 0; x < World::WORLD_WIDTH; x++){
-        for(unsigned int y = 0; y < World::WORLD_HEIGHT; y++){
-            this -> world[x][y] = util::Cell::EMPTY ;
+    for(unsigned int y = 0; y < WORLD_HEIGHT; y++){
+        for(unsigned int x = 0; x < WORLD_WIDTH; x++){
+            this -> world[y][x] = util::Cell::EMPTY ;
         }
     }
 
@@ -29,7 +29,7 @@ CELL_SIZE(config.cellSize){
 World::~World() {
 
     // Deallocate the world
-    for(unsigned int i = 0; i < WORLD_WIDTH; i++)
+    for(unsigned int i = 0; i < WORLD_HEIGHT; i++)
         delete world[i];
     delete [] world;
 }

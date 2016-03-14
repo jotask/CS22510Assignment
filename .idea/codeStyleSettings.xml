@@ -5,6 +5,7 @@
       <value>
         <Objective-C>
           <option name="INTRODUCE_CONST_VARS" value="true" />
+          <option name="INTRODUCE_AUTO_VARS" value="true" />
         </Objective-C>
         <Objective-C-extensions>
           <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />

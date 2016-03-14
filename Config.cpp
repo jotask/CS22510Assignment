@@ -52,10 +52,10 @@ void Config::readArguments(const int argc, char* argv[]){
                 delay = getFloat(buff);
 
                 // Small check because delay can't be negative
-                if(delay > 0.0)
+                if(delay >= 0.0)
                     config.delay = delay;
 
-            }else if(buff == "-screen"){
+            }else if(buff == "-savescreen"){
 
                 // Set if we want store each step on an image
                 config.saveScreenShoots = true;
@@ -76,19 +76,49 @@ void Config::readArguments(const int argc, char* argv[]){
 
             }else if(command == "-dWidth"){
 
-                // The world width length
-                // Its unsigned because the world can't have negative dimensions
+                // The display width
+                // Its unsigned because the display can't have negative dimension
                 unsigned int width;
                 width = getUnsignedInt(buff);
                 config.displayWidth = width;
 
             }else if(command == "-dHeight"){
 
+                // The display height
+                // Its unsigned because the display can't have negative dimension
+                unsigned int height;
+                height = getUnsignedInt(buff);
+                config.displayHeight = height;
+
+            }else if(command == "-wWidth"){
+
+                // The world width length
+                // Its unsigned because the world can't have negative dimensions
+                unsigned int width;
+                width = getUnsignedInt(buff);
+                config.worldWidth = width;
+
+            }else if(command == "-wHeight"){
+
                 // The world height length
                 // Its unsigned because the world can't have negative dimensions
                 unsigned int height;
                 height = getUnsignedInt(buff);
-                config.displayHeight = height;
+                config.worldHeight = height;
+
+            }else if(command == "-cellsize"){
+
+                // Set the cell size
+                double size;
+                size = (double) getFloat(buff);
+                config.cellSize = size;
+
+            }else if(command == "-sensors"){
+
+                // Set how many sensors the robot is going to have
+                unsigned int sensors;
+                sensors = getUnsignedInt(buff);
+                config.numberSensors = sensors;
 
             }
 

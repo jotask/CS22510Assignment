@@ -8,10 +8,8 @@
  * @arg configuration: Reference to the configuration struct
  * @arg simulation: Reference to the simulation manager
  */
-Display::Display(const configuration& config, Simulation& sim) {
-
-    this -> isDebug = config.debug;
-    this -> saveScreenToImage = config.saveScreenShoots;
+Display::Display(const configuration& config, Simulation& sim) : isDebug(config.debug),
+                                                                 saveScreenToImage(config.saveScreenShoots) {
 
     this -> simulation = &sim;
 
@@ -103,11 +101,11 @@ void Display::render() {
     int height = (sizeWindow.y / WORLD_HEIGHT);
 
     // Get the information of each cell and draw it on the screen
-    for(unsigned int i = 0; i < WORLD_HEIGHT; i++){
-        for(unsigned int j = 0; j < WORLD_WIDTH; j++){
+    for(unsigned int y = 0; y < WORLD_HEIGHT; y++){
+        for(unsigned int x = 0; x < WORLD_WIDTH; x++){
 
             // Get the value from the current cell
-            util::Cell cell = world -> getValueAt(i, j);
+            util::Cell cell = world -> getValueAt(y, x);
 
             // Create a rectangle
             sf::RectangleShape rectangle;
@@ -136,8 +134,9 @@ void Display::render() {
             }
 
             // Set the position of the cell on the screen
-            rectangle.setPosition(i * width, j * height);
+            rectangle.setPosition(y * width, x * height);
             window -> draw(rectangle);
+
         }
     }
 
