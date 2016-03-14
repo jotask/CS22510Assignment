@@ -1,6 +1,9 @@
 #include <iostream>
 #include <math.h>
+#include <chrono>
 #include "Simulation.h"
+
+using namespace std;
 
 /**
  * Constructor for this class
@@ -8,7 +11,7 @@
  * @arg robot: the robot for the simulation
  * @the configuration for some parameters
  */
-Simulation::Simulation(Robot& robot, const configuration& config) : WAIT(config.delay) {
+Simulation::Simulation(Robot& robot, const configuration& config) : WAIT((unsigned long int)(config.delay * 1000)) {
 
 
     // Set variables for this instance
@@ -20,7 +23,7 @@ Simulation::Simulation(Robot& robot, const configuration& config) : WAIT(config.
     this -> readRanges(config.rangesFile);
 
     // Know the time for the next step
-    this -> nextTime = clock() + (WAIT * CLOCKS_PER_SEC);
+    lastRun = systemClock.now();
 
 }
 
@@ -46,17 +49,18 @@ bool Simulation::hasToSimulate() {
  * @return: if we have been update or make a step
  */
 bool Simulation::simulateStep() {
+
     // Know if we need to make a step on the simulation
-    if(clock() >= nextTime){
+    if(systemClock.now() - lastRun >= WAIT){
+
+        // Know when we need to enter this function again
+        updateTime();
 
         // Update the information
         this->updateInformation();
 
         // Make the step
         this->step();
-
-        // Know when is the next time to make a step
-        nextTime = clock() + (WAIT * CLOCKS_PER_SEC);
 
         // return for know that we have been update the simulation
         return true;
@@ -65,6 +69,13 @@ bool Simulation::simulateStep() {
 
     // We didn't did anything
     return false;
+}
+
+/**
+ * Update the current time variable for know when is the next time to update
+ */
+void Simulation::updateTime() {
+    lastRun += WAIT;
 }
 
 /**

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <chrono>
 #include <SFML/System/Time.hpp>
 #include <queue>
 #include "World.h"
@@ -47,10 +48,13 @@ private:
     Robot* robot;
 
     // The time we go to wait on the step on the simulation
-    const float WAIT;
+    const std::chrono::milliseconds WAIT;
 
-    // The next time the simulation has going to simulate
-    float nextTime;
+    // Variable for get the time from the clock
+    std::chrono::system_clock systemClock;
+
+    // The last time when we enter the function
+    std::chrono::system_clock::time_point lastRun;
 
     // Queue of all the poses left
     std::queue<util::Pose> posesRead;
@@ -63,6 +67,9 @@ private:
 
     // Read and convert all the ranges on the file
     void readRanges(const std::string );
+
+    // Update the time for the next step for the simulation
+    void updateTime();
 
 };
 
