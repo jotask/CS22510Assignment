@@ -3,19 +3,23 @@
 
 This code has been written for CS22510 for Aberystwyth University. We have been requested to build a robot simulation that reads data for his sensor and builds a grid representing the world discovered. The poses and the data from his sensors are provided from two differents files. This program read two files, stores his values and initialize a simulation for a robot and his sensor and build a world with obstacle from the data read from his sensors.
 
-## Tools and Librarys used
+## Tools and Library's used
 
 **cmake**: version 3.2 or higher
 
-Everything you need to know for install cmake you can found it on his [website tutorial](https://cmake.org/install/)
+Everything you need to know for [install](https://cmake.org/install) cmake on you machine can be found on the [official website](https://cmake.org//)
 
 **sfml**: version 2.3
 
-for install sfml on a linux machine, you can follow the tutorial from the [sfml page](http://www.sfml-dev.org/tutorials/2.3/start-linux.php)
+For download the SFML library you can follow the tutorial from the [SFML page](http://www.sfml-dev.org/tutorials/2.3/start-linux.php) for install this library
 
 ## Installation
 
-On the terminal, run `make`. This compile all code and make ready for run the program.
+### Recommendation
+
+> Before compile the code I recommend run the follow command `cmake CMakeList.txt`. This command uses the CMake for build a custom Makefile custom for each Operating System.
+
+On the terminal, run `make` command (you need to be on the directory where the file "Makefile" exist). This compile all code and build the executable ready for run the program.
 
 ## Usage
 
