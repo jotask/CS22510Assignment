@@ -5,7 +5,7 @@ This code has been written for CS22510 for Aberystwyth University. We have been 
 
 ## Tools and Library's used
 
-**cmake**: version 3.2 or higher
+**cmake**: version 3.2
 
 Everything you need to know for [install](https://cmake.org/install) cmake on you machine can be found on the [official website](https://cmake.org//)
 
@@ -17,28 +17,28 @@ For download the SFML library you can follow the tutorial from the [SFML page](h
 
 ### Recommendation
 
-> Before compile the code I recommend run the follow command `cmake CMakeList.txt`. This command uses the CMake for build a custom Makefile custom for each Operating System.
+> Before compiling the code I recommend run the follow command `cmake CMakeList.txt`. This command uses the CMake for build a custom Makefile custom for each Operating System.
 
-On the terminal, run `make` command (you need to be on the directory where the file "Makefile" exist). This compile all code and build the executable ready for run the program.
+On the terminal, run `make` command (you need to be in the directory where the file "Makefile" exists). This compiles all code and builds the executable ready to run the program.
 
 ## Usage
 
 On a terminal go to the compiled program and use the follow command for run it: `./Assignment`
 
-Once the program has been opened you can see the simulation on the created screen. For stop the simulation just close the screen.
+Once the program has been opened you can see the simulation on the created screen. To stop the simulation just close the screen.
 
-The program have parameters that can be changed by passing arguments when it runs.
+The program can have parameters that can be changed by passing arguments when it runs.
 
 ## Arguments
 
 `-debug`
-Enable the debug information. At the moment only draw the border of each cell on the world. For know where are each cell.
+Enable the debug information. At the moment only draw the border of each cell in the world. For know where are each cell.
 
 `-delay`
-Set the delay for each simulation step. Example: the following argument `-delay=2.5` set the delay for each step on the simulation to be 2.5 seconds.
+Set the delay for each simulation step. Example: the following argument `-delay=2.5` set the delay for each step in the simulation to be 2.5 seconds.
 
 `-savescreen`
-Store on an image each step of the simulation. The files are stored on the data folder
+Store on an image each step of the simulation. The files are stored in the data folder
 
 `-poses`
 Set the file for the poses data. Example: `-poses=data/poses.txt` set the program read that file for the poses information
@@ -50,24 +50,24 @@ Set the file for the ranges data. Example: `-ranges=data/ranges.txt` set the pro
 Set how many sensors the robot is going to have. Example: `-sensors=3` set the robot is going to have only 3 sensors build in.
 
 `-dWidth`
-Set the screen width. Example `-dWidth=250` set the width of the scren to 250 pixels width
+Set the screen width. Example `-dWidth=250` set the width of the screen to 250 pixels width
 
 `-dHeight`
-Set the screen height. Example `-dHeight=250` set the height of the scren to 250 pixels height
+Set the screen height. Example `-dHeight=250` set the height of the screen to 250 pixels height
 
 `-cellsize`
-Set the size of the cell for the world. Example `-cellsize=0.75` set the cellsize to be 0.75 meters
+Set the size of the cell for the world. Example `-cellsize=0.75` set the cell size to 0.75 meters
 
 `-wWidth`
-Set the world width. Example `-wWidth=25` set the world width to 25. The world have 25 cell width
+Set the world width. Example `-wWidth=25` set the world width to 25. The world has 25 cells on the x-axis.
 
-`-wWidth`
-Set the world height. Example `-wHeight=25` set the world height to 25. The world have 25 cell height
+`-wHeight`
+Set the world height. Example `-wHeight=25` set the world height to 25. The world has 25 cells on the y-axis.
 
 If any argument has been passed to the program. They have the following default values.
 > Debug is disabled
 
-> Does not make a screen shot for each step on the simulation
+> Does not make a screenshot for each step in the simulation
 
 > The delay is 1 seconds
 
@@ -83,33 +83,33 @@ If any argument has been passed to the program. They have the following default 
 
 > The world has 50 cells long and 50 cells high
 
-> The size for each cell is 0.2 meters.
+> The size of each cell is 0.2 meters.
 
 ## Files Included
 
 #### World.h World.cpp
-This files contains the definition and declaration for the world. It stores the world and all the calculation and logic needed.
+This file contains the definition and declaration for the world. It stores the world and all the calculation and logic needed.
 
 #### Robot.h Robot.cpp
-This files contains the definition and declaration for the robot class and all the logic he need, like all his sensors, his position, the world that below, etc.
+This file contains the definition and declaration for the robot class and all the logic he needs, like all his sensors, his position, the world that below, etc.
 
 #### Sensor.h Sensor.cpp
-This files contains the definition and declaration for the sensor class. This class contains all the information that a sensor needs.
+This file contains the definition and declaration for the sensor class. This class contains all the information that a sensor needs.
 
 #### Display.h Display.cc
-This files contains the definition and declaration for the Display class. This class holds and handle all the logic needed for crate the windows, handle his events and draw everything on the screen
+This file contains the definition and declaration for the Display class. This class holds and handle all the logic needed for creating the windows, handle his events and draw everything on the screen
 
 #### Vector.h Vector.cpp
 This file contains the definition and declaration for the Vector class. This class is a simple class for store the position of on robot.
 
 #### Config.h Config.cpp
-This file contains the definition and declaration for the config class. This class read all the arguments passed by the program when it runs and build a configuration for set all the values for the program run.
+This file contains the definition and declaration for the config class. This class read all the arguments passed to the program when it runs and build a configuration for setting all the values for the program run.
 
 #### Util.hpp Util.cpp
-This file contains the definition and declaration of one namespace. This namespace is used to store an enum of each type of cell possible, a struct for a pose and the logic for convert between degree to radians.
+This file contains the definition and declaration of one namespace. This namespace is used to store an enum of each type of cell possible, a struct for a pose and the logic for convert a degree to radians.
 
 #### Main.cpp
-Where the main function live. Here is where everything start and ends. 
+Where the main function live. Here is where everything starts and ends.
 
 ## Credits
 
