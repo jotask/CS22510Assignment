@@ -7,7 +7,7 @@ This code has been written for CS22510 for Aberystwyth University. We have been 
 
 **cmake**: version 3.2
 
-Everything you need to know for [install](https://cmake.org/install) cmake on you machine can be found on the [official website](https://cmake.org//)
+Everything you need to know for [install cmake](https://cmake.org/install) on you machine can be found on the [official website](https://cmake.org//)
 
 **sfml**: version 2.3
 
@@ -25,7 +25,7 @@ On the terminal, run `make` command (you need to be in the directory where the f
 
 On a terminal go to the compiled program and use the follow command for run it: `./Assignment`
 
-Once the program has been opened you can see the simulation on the created screen. To stop the simulation just close the screen.
+Once the program has been opened you can see the simulation on the screen created. To stop the simulation just close the screen.
 
 The program can have parameters that can be changed by passing arguments when it runs.
 
